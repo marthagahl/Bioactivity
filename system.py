@@ -50,10 +50,12 @@ class System(pl.LightningModule):
             # # Output layer
             # nn.Linear(64, len(label_prct)),
 
-            nn.Linear(6144, len(label_prct)),
+            nn.Linear(6144, 10),
         )
-        self.ce_loss = nn.CrossEntropyLoss(
-            reduction='none', weight=(1 - label_prct))
+#        self.ce_loss = nn.CrossEntropyLoss(
+#            reduction='none', weight=(1 - label_prct))
+
+	bce_loss = nn.BCEWithLogitsLoss()
 
     def forward(self, x):
         return self.model(x)
@@ -63,7 +65,8 @@ class System(pl.LightningModule):
 
         y_pred = self.forward(x)
         # loss = ((y - y_pred) ** 2).float().mean()
-        loss = self.ce_loss(y_pred, y).float().mean()
+#        loss = self.ce_loss(y_pred, y).float().mean()
+	loss = self.bce_loss(y_pred, y)
         with torch.no_grad():
             preds = y_pred.argmax(dim=-1)
             acc = (preds == y).float().mean()

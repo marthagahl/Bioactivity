@@ -17,10 +17,9 @@ class BioactivityDataset(torch.utils.data.Dataset):
     def __getitem__(self, i):
         # Continuous prediction
         # return torch.from_numpy(self.x[i]).float(), torch.FloatTensor([self.y[i]])
-        class_id = quantize_ic50(self.y[i])
-        fp = torch.zeros(6144)
-        fp[self.x[i]] = 1
-        return fp, torch.tensor(class_id)
+	fp = self.x[i]
+	panel = self.y[i]
+        return fp, panel 
 
 class Collater:
     def __call__(self, samples):
