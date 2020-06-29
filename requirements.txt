@@ -1,0 +1,9 @@
+sklearn
+editdistance
+pytorch-lightning==0.7.6
+wandb==0.8.21
+rezero==0.1.0
+tqdm
+sentencepiece
+matplotlib
+seaborn
