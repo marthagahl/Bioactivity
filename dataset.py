@@ -3,7 +3,7 @@ import numpy as np
 import torch
 import torch.utils.data
 import pickle
-from .util import quantize_ic50
+from util import quantize_ic50
 
 class BioactivityDataset(torch.utils.data.Dataset):
     def __init__(self, path):
@@ -17,8 +17,8 @@ class BioactivityDataset(torch.utils.data.Dataset):
     def __getitem__(self, i):
         # Continuous prediction
         # return torch.from_numpy(self.x[i]).float(), torch.FloatTensor([self.y[i]])
-	fp = self.x[i]
-	panel = self.y[i]
+        fp = self.x[i]
+        panel = self.y[i]
         return fp, panel 
 
 class Collater:

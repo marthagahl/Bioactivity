@@ -4,7 +4,7 @@ import os
 from pytorch_lightning import Trainer
 from pytorch_lightning.callbacks import EarlyStopping, ModelCheckpoint
 import wandb
-from .system import System
+from system import System
 from pytorch_lightning.loggers import WandbLogger
 
 if __name__ == '__main__':

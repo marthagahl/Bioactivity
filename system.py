@@ -5,8 +5,8 @@ import torch.nn as nn
 import numpy as np
 import pytorch_lightning as pl
 from torch.utils.data import DataLoader
-from .dataset import BioactivityDataset, Collater
-from smart.optimizer import Lamb
+from dataset import BioactivityDataset, Collater
+#from smart.optimizer import Lamb
 from sklearn.metrics import confusion_matrix, f1_score
 
 
@@ -55,7 +55,7 @@ class System(pl.LightningModule):
 #        self.ce_loss = nn.CrossEntropyLoss(
 #            reduction='none', weight=(1 - label_prct))
 
-	bce_loss = nn.BCEWithLogitsLoss()
+        self.bce_loss = nn.BCEWithLogitsLoss()
 
     def forward(self, x):
         return self.model(x)
@@ -66,7 +66,7 @@ class System(pl.LightningModule):
         y_pred = self.forward(x)
         # loss = ((y - y_pred) ** 2).float().mean()
 #        loss = self.ce_loss(y_pred, y).float().mean()
-	loss = self.bce_loss(y_pred, y)
+        loss = self.bce_loss(y_pred, y)
         with torch.no_grad():
             preds = y_pred.argmax(dim=-1)
             acc = (preds == y).float().mean()
