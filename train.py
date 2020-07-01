@@ -1,10 +1,12 @@
 import argparse
 import torch
 import os
+import pytorch_lightning
 from pytorch_lightning import Trainer
 from pytorch_lightning.callbacks import EarlyStopping, ModelCheckpoint
 import wandb
 from system import System
+from pytorch_lightning import loggers
 from pytorch_lightning.loggers import WandbLogger
 
 if __name__ == '__main__':

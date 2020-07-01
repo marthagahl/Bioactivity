@@ -1,12 +1,11 @@
-FROM pytorch/pytorch:1.4-cuda10.1-cudnn7-devel as BASE
+FROM pytorch/pytorch:1.4-cuda10.1-cudnn7-devel
 
 RUN git clone https://github.com/nvidia/apex && \
     cd apex && \
     python setup.py install --user --cuda_ext --cpp_ext && \
     rm -rf /apex
 
-FROM pytorch/pytorch:1.4-cuda10.1-cudnn7-runtime
-COPY --from=BASE /root/.local /root/.local
+RUN pip install pytorch-lightning
 
 RUN apt update && apt install -y rsync
 
