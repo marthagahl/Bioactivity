@@ -1,6 +1,6 @@
 sklearn
 editdistance
-pytorch-lightning==0.7.6
+pytorch-lightning==2.4.0
 wandb==0.8.21
 rezero==0.1.0
 tqdm
